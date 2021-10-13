@@ -6,6 +6,8 @@ long calculateTrees();
 long productOfTrees();
 
 void day3() {
+    printf("day3:\n");
+    printf("%ld\n", calculateTrees(3, 1));
     printf("%ld\n", productOfTrees());
 }
 
@@ -23,7 +25,7 @@ long productOfTrees() {
 long calculateTrees(int xStep, int yStep)
 {
     const int MAP_ROWS = 323;
-    char *map[MAP_ROWS];
+    char* map[MAP_ROWS];
     fileToArray("inputs/day3.txt", map);
 
     int x = 0;
