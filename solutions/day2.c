@@ -43,8 +43,6 @@ size_t part2(char* password_rules[], char* passwords[], size_t LENGTH) {
 
         if (passwords[i][index1] == letter_match ^ passwords[i][index2] == letter_match) {
             valid_passport_count++;
-            printf("%s: [%s] m: %c %c\n", password_rules[i], passwords[i], passwords[i][index1], passwords[i][index2]);
-
         }
 
     }
@@ -66,7 +64,8 @@ void day2() {
 
     printf("day 2:\n");
     printf("%ld\n", part1(password_rules, passwords, LENGTH));
-
     printf("%ld\n", part2(password_rules, passwords, LENGTH));
-
+    for (size_t i = 0; i < LENGTH; i++) {
+        free(lines[i]);
+    }
 }

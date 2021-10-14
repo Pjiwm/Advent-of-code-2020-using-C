@@ -130,16 +130,16 @@ void day4()
 {
     const size_t PASSPORT_ROWS = 1147;
     const size_t PASSPORT_SIZE = 291;
-    char* passportFile[1147];
+    char* passport_file[1147];
     char* passports[PASSPORT_SIZE];
-    fileToArray("inputs/day4.txt", passportFile);
+    fileToArray("inputs/day4.txt", passport_file);
 
     char nextElement[500] = "";
     size_t passports_index = 0;
     for (size_t i = 0; i < PASSPORT_ROWS; i++) {
-        if (strlen(passportFile[i]) > 2) {
+        if (strlen(passport_file[i]) > 2) {
             strcat(nextElement, " ");
-            strcat(nextElement, passportFile[i]);
+            strcat(nextElement, passport_file[i]);
             passports[passports_index] = strdup(nextElement);
 
         }
@@ -253,4 +253,6 @@ void day4()
     printf("%ld\n", valid_passport_count);
     // it loops over the passports one more time and adds another valid one?
     printf("%ld\n", valid_strict_passport_count - 1);
+    free(*passport_file);
+    free(*passports);
 }

@@ -2,11 +2,11 @@
 #include <stdlib.h>
 
 typedef struct Node {
-    int value;
+    char* value;
     struct Node* next;
 } Node;
-
-void insert_tail(Node** _root, int _value) {
+// add element to end of list
+void insert_tail(Node** _root, char* _value) {
     Node* newNode = malloc(sizeof(Node));
     if (newNode == NULL) {
         exit(1);
@@ -25,8 +25,8 @@ void insert_tail(Node** _root, int _value) {
     }
     curr->next = newNode;
 }
-
-void insert_head(Node** _root, int _value) {
+// add element to beginning of list
+void insert_head(Node** _root, char* _value) {
     Node* new_node = malloc(sizeof(Node));
     // if(new_node == NULL) {
     //     return 3;
@@ -35,6 +35,16 @@ void insert_head(Node** _root, int _value) {
     new_node->next = *_root;
 
     *_root = new_node;
+}
+// add element after root
+void insert_after(Node* node, char* value) {
+    Node* new_node = malloc(sizeof(Node));
+    new_node->value = value;
+    new_node->next = node->next;
+    node->next = new_node;
+    // if(new_node == NULL) {
+    //     return 4;
+    // }
 }
 
 void deallocate(Node** _root) {
@@ -51,12 +61,15 @@ void deallocate(Node** _root) {
 
 int main() {
     Node* root = NULL;
-    insert_head(&root, 10);
-    insert_head(&root, 11);
-    insert_tail(&root, 2);
+    insert_tail(&root, "s");
+    insert_tail(&root, "sd");
+    insert_tail(&root, "tit");
+    insert_head(&root, "ddd");
 
-    for(Node* curr = root; curr != NULL; curr = curr->next) {
-        printf("%d\n", curr->value);
+    insert_after(root->next, "woo");
+
+    for (Node* curr = root; curr != NULL; curr = curr->next) {
+        printf("%s\n", curr->value);
     }
 
     deallocate(&root);

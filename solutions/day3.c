@@ -2,27 +2,27 @@
 #include <stdlib.h>
 #include "../helpers/file_reader.h"
 #include <string.h>
-long calculateTrees();
-long productOfTrees();
+long calculate_trees();
+long product_of_trees();
 
 void day3() {
     printf("day3:\n");
-    printf("%ld\n", calculateTrees(3, 1));
-    printf("%ld\n", productOfTrees());
+    printf("%ld\n", calculate_trees(3, 1));
+    printf("%ld\n", product_of_trees());
 }
 
 
-long productOfTrees() {
+long product_of_trees() {
     long total = 1;
-    total *= calculateTrees(1, 1);
-    total *= calculateTrees(3, 1);
-    total *= calculateTrees(5, 1);
-    total *= calculateTrees(7, 1);
-    total *= calculateTrees(1, 2);
+    total *= calculate_trees(1, 1);
+    total *= calculate_trees(3, 1);
+    total *= calculate_trees(5, 1);
+    total *= calculate_trees(7, 1);
+    total *= calculate_trees(1, 2);
     return total;
 }
 
-long calculateTrees(int xStep, int yStep)
+long calculate_trees(int xStep, int yStep)
 {
     const int MAP_ROWS = 323;
     char* map[MAP_ROWS];
@@ -48,4 +48,5 @@ long calculateTrees(int xStep, int yStep)
         x %= 31;
     }
     return treeCount;
+    free(map);
 }
