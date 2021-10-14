@@ -5,9 +5,10 @@
 #include <stdbool.h> 
 
 size_t year_check(char* str, size_t current_index) {
+    printf("at %ld %s\n ", current_index, str);
     char year_str[4];
     for (int i = 0; i < 4; i++) {
-        year_str[i] = str[current_index + i];
+        year_str[i] = str[current_index + i +1];
     }
     return atoi(year_str);
 }
@@ -39,6 +40,13 @@ _Bool check_eyr(char* str, size_t current_index) {
     }
     return result;
 }
+
+// _Bool check_hgt(char* str, size_t current_index) {
+//     _Bool is_cm = 0;
+//         for (int i = 0; i < 4; i++) {
+//         year_str[i] = str[current_index + i];
+//     }
+// }
 
 
 void day4()
@@ -87,6 +95,9 @@ void day4()
                 if (passports[i][j + 1] == 'y' && passports[i][j + 2] == 'r' && passports[i][j + 3] == ':') {
                     valid_field_count++;
                     j += 3;
+                    if (check_eyr(passports[i], j)) {
+                        printf("goeie eyr\n");
+                    }
                 }
                 else if (passports[i][j + 1] == 'c' && passports[i][j + 2] == 'l' && passports[i][j + 3] == ':') {
                     valid_field_count++;
@@ -123,5 +134,6 @@ void day4()
             }
         }
     }
-    printf("%ld", valid_passport_count);
+    printf("day4:\n");
+    printf("%ld\n", valid_passport_count);
 }
