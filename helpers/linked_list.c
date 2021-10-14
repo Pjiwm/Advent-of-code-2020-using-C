@@ -6,7 +6,7 @@ typedef struct Node {
     struct Node* next;
 } Node;
 
-void insertEnd(Node** _root, int _value) {
+void insert_tail(Node** _root, int _value) {
     Node* newNode = malloc(sizeof(Node));
     if (newNode == NULL) {
         exit(1);
@@ -26,6 +26,17 @@ void insertEnd(Node** _root, int _value) {
     curr->next = newNode;
 }
 
+void insert_head(Node** _root, int _value) {
+    Node* new_node = malloc(sizeof(Node));
+    // if(new_node == NULL) {
+    //     return 3;
+    // }
+    new_node->value = _value;
+    new_node->next = *_root;
+
+    *_root = new_node;
+}
+
 void deallocate(Node** _root) {
     Node* curr = *_root;
 
@@ -39,22 +50,13 @@ void deallocate(Node** _root) {
 }
 
 int main() {
-    Node* root = malloc(sizeof(Node));
-    if (root == NULL) {
-        exit(2);
-    }
-    root->value = 10;
-    root->next = NULL;
+    Node* root = NULL;
+    insert_head(&root, 10);
+    insert_head(&root, 11);
+    insert_tail(&root, 2);
 
-    insertEnd(&root, 5);
-    insertEnd(&root, 25);
-    insertEnd(&root, 15);
-    insertEnd(&root, 50);
-
-    Node* curr = root;
-    while (curr != NULL) {
+    for(Node* curr = root; curr != NULL; curr = curr->next) {
         printf("%d\n", curr->value);
-        curr = curr->next;
     }
 
     deallocate(&root);
