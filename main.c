@@ -3,9 +3,11 @@
 #include <string.h>
 #include "solutions/solutions.h"
 #include "helpers/file_reader.h"
+// #include "helpers/linked_list.h"
 
 int main()
 {
+
     day1();
     day2();
     day3();
