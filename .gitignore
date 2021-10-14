@@ -2,3 +2,4 @@ l
 *.o
 *.out
 output
+.vscode/
