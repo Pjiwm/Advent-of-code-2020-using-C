@@ -249,6 +249,7 @@ void day4()
             }
         }
     }
+    printf("day 4:\n");
     printf("%ld\n", valid_passport_count);
     // it loops over the passports one more time and adds another valid one?
     printf("%ld\n", valid_strict_passport_count - 1);
