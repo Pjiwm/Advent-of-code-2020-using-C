@@ -2,6 +2,44 @@
 #include <stdlib.h>
 #include "../helpers/file_reader.h"
 #include <string.h>
+#include <stdbool.h> 
+
+size_t year_check(char* str, size_t current_index) {
+    char year_str[4];
+    for (int i = 0; i < 4; i++) {
+        year_str[i] = str[current_index + i];
+    }
+    return atoi(year_str);
+}
+
+_Bool check_byr(char* str, size_t current_index) {
+    size_t age = year_check(str, current_index);
+    _Bool result = 0;
+    if (age >= 1920 && age <= 2002) {
+        result = 1;
+    }
+    return result;
+}
+
+
+_Bool check_iyr(char* str, size_t current_index) {
+    size_t issue_year = year_check(str, current_index);
+    _Bool result = 0;
+    if (issue_year >= 2010 && issue_year <= 2020) {
+        result = 1;
+    }
+    return result;
+}
+
+_Bool check_eyr(char* str, size_t current_index) {
+    size_t exp_year = year_check(str, current_index);
+    _Bool result = 0;
+    if (exp_year >= 2020 && exp_year <= 2030) {
+        result = 1;
+    }
+    return result;
+}
+
 
 void day4()
 {
@@ -18,7 +56,7 @@ void day4()
             strcat(nextElement, " ");
             strcat(nextElement, passportFile[i]);
             passports[passports_index] = strdup(nextElement);
-            // printf("building: %s\n", passports[passports_index]);
+
         }
         else {
             strcpy(nextElement, "");
@@ -79,7 +117,7 @@ void day4()
                 break;
             }
             j++;
-            if(valid_field_count == 7) {
+            if (valid_field_count == 7) {
                 valid_passport_count++;
                 j = strlen(passports[i]);
             }
