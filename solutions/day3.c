@@ -26,7 +26,7 @@ long calculate_trees(int xStep, int yStep)
 {
     const int MAP_ROWS = 323;
     char* map[MAP_ROWS];
-    fileToArray("inputs/day3.txt", map);
+    file_to_array("inputs/day3.txt", map);
 
     int x = 0;
     long treeCount = 0;

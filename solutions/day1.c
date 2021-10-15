@@ -13,7 +13,7 @@ void convert_arr_to_int(char* str_arr[], int* int_arr, size_t LENGTH) {
 int sum_2020_part1() {
     const size_t LENGTH = 200;
     char* numbers_strings[LENGTH];
-    fileToArray("inputs/day1.txt", numbers_strings);
+    file_to_array("inputs/day1.txt", numbers_strings);
     int numbers[LENGTH];
     convert_arr_to_int(numbers_strings, numbers, LENGTH);
     // find match that makes 2020
@@ -32,7 +32,7 @@ int sum_2020_part1() {
 long sum_2020_part2() {
     const size_t LENGTH = 200;
     char* numbers_strings[LENGTH];
-    fileToArray("inputs/day1.txt", numbers_strings);
+    file_to_array("inputs/day1.txt", numbers_strings);
     int numbers[LENGTH];
     convert_arr_to_int(numbers_strings, numbers, LENGTH);
 

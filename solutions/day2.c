@@ -53,7 +53,7 @@ void day2() {
 
     const size_t LENGTH = 1000;
     char* lines[LENGTH];
-    fileToArray("inputs/day2.txt", lines);
+    file_to_array("inputs/day2.txt", lines);
 
     char* password_rules[LENGTH];
     char* passwords[LENGTH];

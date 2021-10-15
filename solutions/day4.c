@@ -132,7 +132,7 @@ void day4()
     const size_t PASSPORT_SIZE = 291;
     char* passport_file[1147];
     char* passports[PASSPORT_SIZE];
-    fileToArray("inputs/day4.txt", passport_file);
+    file_to_array("inputs/day4.txt", passport_file);
 
     char nextElement[500] = "";
     size_t passports_index = 0;

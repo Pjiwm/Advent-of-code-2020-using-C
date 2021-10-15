@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-void fileToArray(char *fileName, char *result[])
+void file_to_array(char *fileName, char *result[])
 {
     FILE *fPointer = fopen(fileName, "r");
     char *line = NULL;
