@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "../helpers/file_reader.h"
 #include <string.h>
+#include "../helpers/file_reader.h"
 
 void convert_arr_to_int(char* str_arr[], int* int_arr, size_t LENGTH) {
 

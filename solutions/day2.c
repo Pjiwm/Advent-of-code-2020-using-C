@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "../helpers/file_reader.h"
 #include <string.h>
+#include "../helpers/file_reader.h"
 
 void set_attributes(int* num1, int* num2, char* letter_match, char* password_rules) {
     char* rules_dup = strdup(password_rules);

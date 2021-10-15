@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "../helpers/file_reader.h"
 #include <string.h>
+#include "../helpers/file_reader.h"
 long calculate_trees();
 long product_of_trees();
 

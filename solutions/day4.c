@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "../helpers/file_reader.h"
 #include <string.h>
 #include <stdbool.h> 
 #include <ctype.h>
+#include "../helpers/file_reader.h"
 
 size_t year_check(char* str, size_t current_index) {
     // printf("at %ld %s\n ", current_index, str);

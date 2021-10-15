@@ -10,7 +10,7 @@ void file_to_array(char *fileName, char *result[])
     ssize_t read;
 
     int index = 0;
-    
+
     char passport[] = "";
 
     while ((read = getline(&line, &len, fPointer)) != -1)

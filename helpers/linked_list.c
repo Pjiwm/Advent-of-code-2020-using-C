@@ -1,10 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "linked_list.h"
 
-typedef struct Node {
-    char* value;
-    struct Node* next;
-} Node;
 // add element to end of list
 void insert_tail(Node** _root, char* _value) {
     Node* newNode = malloc(sizeof(Node));
@@ -59,19 +56,19 @@ void deallocate(Node** _root) {
     *_root = NULL;
 }
 
-int main() {
-    Node* root = NULL;
-    insert_tail(&root, "s");
-    insert_tail(&root, "sd");
-    insert_tail(&root, "tit");
-    insert_head(&root, "ddd");
+// int main() {
+//     Node* root = NULL;
+//     insert_tail(&root, "s");
+//     insert_tail(&root, "sd");
+//     insert_tail(&root, "tit");
+//     insert_head(&root, "ddd");
 
-    insert_after(root->next, "woo");
+//     insert_after(root->next, "woo");
 
-    for (Node* curr = root; curr != NULL; curr = curr->next) {
-        printf("%s\n", curr->value);
-    }
+//     for (Node* curr = root; curr != NULL; curr = curr->next) {
+//         printf("%s\n", curr->value);
+//     }
 
-    deallocate(&root);
-    return 0;
-}
+//     deallocate(&root);
+//     return 0;
+// }
