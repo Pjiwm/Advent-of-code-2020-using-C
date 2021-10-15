@@ -87,5 +87,6 @@ void day5() {
             i = LENGTH;
         }
     }
+    free(*lines);
 
 }
