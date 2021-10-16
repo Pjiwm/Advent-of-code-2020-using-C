@@ -26,7 +26,6 @@ int main()
     day4();
     day5();
     day6();
-    printf("S");
     return 0;
 }
 
