@@ -7,23 +7,22 @@
 size_t answer_count(char* str) {
     size_t count = 0;
 
-    char* answered_questions;
+    char* answered_questions = (char *)malloc(26 * sizeof(char));
     for (size_t i = 0; i < strlen(str); i++) {
         if (isalpha(str[i]) && strchr(answered_questions, str[i]) == NULL) {
             answered_questions[count] = str[i];
             count++;
         }
     }
-    for (size_t i = 0; i < count; i++) {
-        answered_questions[i] = '\0';
-    }
+
+    answered_questions = "";
     return count;
 }
 // answer count should go up if letter appears on each row.
 size_t answer_count_part2(char* str) {
     size_t answer_index = 0;
 
-    char* answered_questions;
+    char* answered_questions = (char *)malloc(26 * sizeof(char));
     for (size_t i = 0; i < strlen(str); i++) {
         if (isalpha(str[i]) && strchr(answered_questions, str[i]) == NULL) {
             answered_questions[answer_index] = str[i];
@@ -31,10 +30,24 @@ size_t answer_count_part2(char* str) {
         }
     }
 
+    char individual_answers[15][26];
+
+    size_t rows = 0;
+    for (size_t i = 0; i < strlen(str); i++) {
+        if (str[i] != '\n') {
+            individual_answers[rows][i] = str[i];
+        } else {
+            rows++;
+        }
+    }
+    // printf("%s\n", individual_answers[0]);
+    // printf("%s\n", individual_answers[1]);
+    // printf("%s\n", individual_answers[2]);
     for (size_t i = 0; i < answer_index; i++) {
         answered_questions[i] = '\0';
     }
-    return answer_index;
+    answered_questions = "";
+    return 0;
 }
 
 void day6() {
@@ -65,6 +78,7 @@ void day6() {
     }
     printf("day6:\n");
     printf("%ld\n", sum);
+    answer_count_part2("groups[0]\ndeez\nnuts");
     free(*group_file);
     free(*groups);
 }
