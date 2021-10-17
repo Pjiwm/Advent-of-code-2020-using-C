@@ -27,20 +27,18 @@ void bag_builder(char* str, size_t begin, size_t end, char* bag) {
     }
 }
 
-size_t find_gold_bags(char* str, char* rules[], size_t LENGTH) {
-    size_t count = (size_t)str[9];
-    for (size_t i = 0; i < LENGTH; i++) {
-        // Loop over line, we start at 2 to skip the number at the beginning of the string/
-        _Bool is_same_bag = 1;
-        for (size_t j = 2; j < strlen(str); j++) {
-            if (str[j] != rules[i][j]) {
-                is_same_bag = 0;
-            }
+char* get_rule_bag(char* str) {
+    char* return_string;
+    _Bool is_bag_name = 1;
+    size_t i = 0;
+    while (is_bag_name) {
+        if (str[i + 1] == ' ' && str[i + 2] == 'b' && str[i + 3] == 'a' && str[i + 4] == 'g') {
+            is_bag_name = 0;
         }
-        if (is_same_bag) {
-
-        }
+        return_string[i] = str[i];
+        i++;
     }
+    return return_string;
 }
 
 void get_bags_from_rule(char* rule, Node** bags) {
@@ -61,20 +59,47 @@ void get_bags_from_rule(char* rule, Node** bags) {
     }
 }
 
+size_t find_gold_bags(char* bag, char* rules[], size_t LENGTH) {
+    Node* bags = NULL;
+    size_t gold_bag_count = 0;
+
+    for (size_t i = 0; i < LENGTH; i++) {
+        // Loop over line, we start at 2 to skip the number at the beginning of the string/
+        _Bool is_rule_from_bag = 1;
+        for (size_t j = 2; j < strlen(bag); j++) {
+            if (bag[j] != rules[i][j - 2]) {
+                is_rule_from_bag = 0;
+            }
+        }
+        if (is_rule_from_bag) {
+            get_bags_from_rule(rules[i], &bags);
+            for (Node* curr = bags; curr != NULL; curr = curr->next) {
+                size_t bag_count = (size_t)curr->value[0];
+                printf("got the bags\n");
+                gold_bag_count += (bag_count * find_gold_bags(curr->value, rules, LENGTH));
+            }
+            deallocate(&bags);
+        }
+    }
+    return gold_bag_count;
+}
 
 void day7() {
-    const size_t LENGTH = 594;
+    const size_t LENGTH = 9;
     char* rules[LENGTH];
-    file_to_array("inputs/day7.txt", rules);
+    file_to_array("inputs/test.txt", rules);
 
     printf("day7:\n");
     printf("%s\n", rules[0]);
-    // char* bags[] = malloc(500 * sizeof(char));
-    Node* bags = NULL;
-    get_bags_from_rule(rules[1], &bags);
-    for (Node* curr = bags; curr != NULL; curr = curr->next) {
-        // printf("%s l:%ld\n", curr->value, strlen(curr->value));
-    }
+    // Node* bags = NULL;
+    // get_bags_from_rule(rules[1], &bags);
+    // for (Node* curr = bags; curr != NULL; curr = curr->next) {
+    //     // printf("%s l:%ld\n", curr->value, strlen(curr->value));
+    // }
+    char* bag = get_rule_bag(rules[0]);
+    printf("X\n");
+    printf("%ld\n", find_gold_bags(bag, rules, LENGTH));
+    
 }
 
 
