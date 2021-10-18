@@ -4,3 +4,4 @@ debug
 *.out
 output
 .vscode/
+*.gch
