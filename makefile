@@ -36,4 +36,4 @@ linked_list.o: helpers/linked_list.c helpers/linked_list.h
 	gcc -c helpers/linked_list.c
 
 clean:
-	rm *.o output
+	rm *.o output debug
