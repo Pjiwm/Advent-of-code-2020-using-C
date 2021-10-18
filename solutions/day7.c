@@ -112,6 +112,33 @@ _Bool find_gold_bags(char* bag, char* rules[], size_t LENGTH) {
     return has_gold_bag;
 }
 
+size_t count_bags_in_gold_bag(char* bag, char* rules[], size_t LENGTH) {
+    Node* bags = NULL;
+    size_t bag_count = 0;
+
+
+    for (size_t i = 0; i < LENGTH; i++) {
+        // Loop over line, we start at 2 to skip the number at the beginning of the string/
+        _Bool is_rule_from_bag = 1;
+        for (size_t j = 0; j < strlen(bag); j++) {
+            if (bag[j] != rules[i][j]) {
+                is_rule_from_bag = 0;
+            }
+        }
+        if (is_rule_from_bag) {
+            get_bags_from_rule(rules[i], &bags);
+            for (Node* curr = bags; curr != NULL; curr = curr->next) {
+                size_t new_bag_count = atoi(&curr->value[0]);
+                char* new_bag_name = get_bag_without_num(curr->value);
+                bag_count += new_bag_count + (new_bag_count * count_bags_in_gold_bag(new_bag_name, rules, LENGTH));
+
+            }
+            deallocate(&bags);
+        }
+    }
+    return bag_count;
+}
+
 void day7() {
     const size_t LENGTH = 594;
     char* rules[LENGTH];
@@ -125,6 +152,8 @@ void day7() {
         if (find_gold_bags(bag, rules, LENGTH)) bag_count++;
     }
     printf("%ld\n", bag_count);
+    char* bag = get_rule_bag(rules[357]);
+    printf("%ld\n", count_bags_in_gold_bag(bag, rules, LENGTH));
 
 }
 
