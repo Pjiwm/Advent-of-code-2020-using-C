@@ -154,7 +154,6 @@ void day7() {
     printf("%ld\n", bag_count);
     char* bag = get_rule_bag(rules[357]);
     printf("%ld\n", count_bags_in_gold_bag(bag, rules, LENGTH));
-
 }
 
 

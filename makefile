@@ -1,5 +1,5 @@
-output: main.o file_reader.o linked_list.o solutions.o day1.o day2.o day3.o day4.o day5.o day6.o day7.o
-	gcc -g main.o file_reader.o linked_list.o day1.o day2.o day3.o day4.o day5.o day6.o day7.o -o output
+output: main.o file_reader.o linked_list.o solutions.o day1.o day2.o day3.o day4.o day5.o day6.o day7.o day8.o
+	gcc -g main.o file_reader.o linked_list.o day1.o day2.o day3.o day4.o day5.o day6.o day7.o day8.o -o output
 
 main.o: main.c
 	gcc -c main.c
@@ -27,6 +27,8 @@ day6.o: solutions/day6.c
 
 day7.o: solutions/day7.c
 	gcc -c solutions/day7.c
+day8.o: solutions/day8.c
+	gcc -c solutions/day8.c
 
 # helpers
 file_reader.o: helpers/file_reader.c helpers/file_reader.h
