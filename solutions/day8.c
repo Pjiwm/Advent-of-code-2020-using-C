@@ -6,19 +6,21 @@
 #include "../helpers/linked_list.h"
 
 int accumulator = 0;
-int instruction_manager(char* _instruction, _Bool* _has_no_repeats) {
+Int_Node* executed_indexes = NULL;
+
+int instruction_manager(char* _instruction) {
+
     char* instruction = strdup(_instruction);
     char* cmd = strtok(strdup(instruction), " ");
     int amount = atoi(strtok(NULL, " "));
-    printf("am: %d cmd: %s", amount, cmd);
-    if (strcmp(cmd, " jump")) {
+    if (strcmp(cmd, "jmp") == 0) {
         return amount;
     }
-    else if (strcmp(cmd, " acc")) {
+    else if (strcmp(cmd, "acc") == 0) {
         accumulator += amount;
         return 1;
     }
-    else if (strcmp(cmd, " nop")) {
+    else if (strcmp(cmd, "nop") == 0) {
         return 1;
     }
     else {
@@ -28,26 +30,28 @@ int instruction_manager(char* _instruction, _Bool* _has_no_repeats) {
     return 0;
 }
 
-_Bool is_already_executed(int _index, Node** root) {
-    _Bool has_no_repeats = 1;
-    for (Node* curr = root; curr != NULL; curr = curr->next) {
+_Bool is_already_executed(int _index, Int_Node* root) {
+    for (Int_Node* curr = root; curr != NULL; curr = curr->next) {
         if (curr->value == _index) {
-            has_no_repeats = 0;
+            return 0;
         }
     }
-    return has_no_repeats;
+    return 1;
 }
 
 void day8() {
     const size_t LENGTH = 625;
     char* lines[LENGTH];
     file_to_array("inputs/day8.txt", lines);
-    printf("day8:\n");
-    Node* exexuted_indexes = NULL;
+    printf("day 8:\n");
     int index = 0;
     _Bool has_no_repeats = 1;
     while (index < LENGTH && has_no_repeats) {
-        int index_adjustment = instruction_manager(lines[0], has_no_repeats);
+        int_insert_tail(&executed_indexes, index);
+        int index_adjustment = instruction_manager(lines[index]);
         index += index_adjustment;
+        has_no_repeats = is_already_executed(index, executed_indexes);
     }
+    
+    printf("%d\n", accumulator);
 }
