@@ -31,7 +31,7 @@ size_t answer_count_part2(char* str) {
         }
     }
 
-    Node* root = NULL;
+    String_Node* root = NULL;
     char* row = (char*)malloc(26 * sizeof(char));
     size_t row_index = 0;
     for (size_t i = 0; i < strlen(str); i++) {
@@ -39,17 +39,17 @@ size_t answer_count_part2(char* str) {
             row[row_index++] = str[i];
         }
         else {
-            insert_tail(&root, strdup(row));
+            str_insert_tail(&root, strdup(row));
             row_index = 0;
             row = (char*)malloc(26 * sizeof(char));
         }
     }
 
     // does not loop through last row so we add it manually after the loop.
-    // insert_tail(&root, strdup(row));
-    for (Node* curr = root; curr != NULL; curr = curr->next) {
+    // str_insert_tail(&root, strdup(row));
+    for (String_Node* curr = root; curr != NULL; curr = curr->next) {
     }
-    for (Node* curr = root; curr != NULL; curr = curr->next) {
+    for (String_Node* curr = root; curr != NULL; curr = curr->next) {
         for (size_t i = 0; i < strlen(answered_questions); i++) {
             _Bool has_answer = 0;
             for (size_t j = 0; j < strlen(curr->value); j++) {
@@ -62,7 +62,7 @@ size_t answer_count_part2(char* str) {
             }
         }
     }
-    deallocate(&root);
+    str_deallocate(&root);
 
     size_t remaining_answers = 0;
     for (size_t i = 0; i < strlen(answered_questions); i++) {

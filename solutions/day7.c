@@ -64,7 +64,7 @@ _Bool is_gold_bag(char* str) {
 
 }
 
-void get_bags_from_rule(char* rule, Node** bags) {
+void get_bags_from_rule(char* rule, String_Node** bags) {
     char* bag = (char*)malloc(32 * sizeof(char));
     size_t bag_index = 0;
     for (size_t i = 0; i < strlen(rule); i++) {
@@ -74,14 +74,14 @@ void get_bags_from_rule(char* rule, Node** bags) {
                 bag_index++;
             }
             bag[bag_index] = '\0';
-            insert_tail(bags, strdup(bag));
+            str_insert_tail(bags, strdup(bag));
             bag_index = 0;
         }
     }
 }
 
 _Bool find_gold_bags(char* bag, char* rules[], size_t LENGTH) {
-    Node* bags = NULL;
+    String_Node* bags = NULL;
     _Bool has_gold_bag = 0;
 
 
@@ -95,7 +95,7 @@ _Bool find_gold_bags(char* bag, char* rules[], size_t LENGTH) {
         }
         if (is_rule_from_bag) {
             get_bags_from_rule(rules[i], &bags);
-            for (Node* curr = bags; curr != NULL; curr = curr->next) {
+            for (String_Node* curr = bags; curr != NULL; curr = curr->next) {
                 if (is_gold_bag(curr->value)) {
                     return 1;
                 }
@@ -106,14 +106,14 @@ _Bool find_gold_bags(char* bag, char* rules[], size_t LENGTH) {
                     return has_gold_bag;
                 }
             }
-            deallocate(&bags);
+            str_deallocate(&bags);
         }
     }
     return has_gold_bag;
 }
 
 size_t count_bags_in_gold_bag(char* bag, char* rules[], size_t LENGTH) {
-    Node* bags = NULL;
+    String_Node* bags = NULL;
     size_t bag_count = 0;
 
 
@@ -127,13 +127,13 @@ size_t count_bags_in_gold_bag(char* bag, char* rules[], size_t LENGTH) {
         }
         if (is_rule_from_bag) {
             get_bags_from_rule(rules[i], &bags);
-            for (Node* curr = bags; curr != NULL; curr = curr->next) {
+            for (String_Node* curr = bags; curr != NULL; curr = curr->next) {
                 size_t new_bag_count = atoi(&curr->value[0]);
                 char* new_bag_name = get_bag_without_num(curr->value);
                 bag_count += new_bag_count + (new_bag_count * count_bags_in_gold_bag(new_bag_name, rules, LENGTH));
 
             }
-            deallocate(&bags);
+            str_deallocate(&bags);
         }
     }
     return bag_count;

@@ -2,29 +2,32 @@
 #include <stdlib.h>
 #include "linked_list.h"
 
+
+// Strings
+
 // add element to end of list
-void insert_tail(Node** _root, char* _value) {
-    Node* newNode = malloc(sizeof(Node));
-    if (newNode == NULL) {
+void str_insert_tail(String_Node** _root, char* _value) {
+    String_Node* new_node = malloc(sizeof(String_Node));
+    if (new_node == NULL) {
         exit(1);
     }
-    newNode->next = NULL;
-    newNode->value = _value;
+    new_node->next = NULL;
+    new_node->value = _value;
 
     if (*_root == NULL) {
-        *_root = newNode;
+        *_root = new_node;
         return;
     }
 
-    Node* curr = *_root;
+    String_Node* curr = *_root;
     while (curr->next != NULL) {
         curr = curr->next;
     }
-    curr->next = newNode;
+    curr->next = new_node;
 }
 // add element to beginning of list
-void insert_head(Node** _root, char* _value) {
-    Node* new_node = malloc(sizeof(Node));
+void str_insert_head(String_Node** _root, char* _value) {
+    String_Node* new_node = malloc(sizeof(String_Node));
     // if(new_node == NULL) {
     //     return 3;
     // }
@@ -34,8 +37,8 @@ void insert_head(Node** _root, char* _value) {
     *_root = new_node;
 }
 // add element after root
-void insert_after(Node* node, char* value) {
-    Node* new_node = malloc(sizeof(Node));
+void str_insert_after(String_Node* node, char* value) {
+    String_Node* new_node = malloc(sizeof(String_Node));
     new_node->value = value;
     new_node->next = node->next;
     node->next = new_node;
@@ -44,11 +47,67 @@ void insert_after(Node* node, char* value) {
     // }
 }
 
-void deallocate(Node** _root) {
-    Node* curr = *_root;
+void str_deallocate(String_Node** _root) {
+    String_Node* curr = *_root;
 
     while (curr != NULL) {
-        Node* aux = curr;
+        String_Node* aux = curr;
+        curr = curr->next;
+        free(aux);
+    }
+
+    *_root = NULL;
+}
+
+// Ints
+
+// add element to end of list
+void int_insert_tail(Int_Node** _root, int _value) {
+    Int_Node* new_node = malloc(sizeof(Int_Node));
+    if (new_node == NULL) {
+        exit(1);
+    }
+    new_node->next = NULL;
+    new_node->value = _value;
+
+    if (*_root == NULL) {
+        *_root = new_node;
+        return;
+    }
+
+    Int_Node* curr = *_root;
+    while (curr->next != NULL) {
+        curr = curr->next;
+    }
+    curr->next = new_node;
+}
+// add element to beginning of list
+void int_insert_head(Int_Node** _root, int _value) {
+    Int_Node* new_node = malloc(sizeof(Int_Node));
+    // if(new_node == NULL) {
+    //     return 3;
+    // }
+    new_node->value = _value;
+    new_node->next = *_root;
+
+    *_root = new_node;
+}
+// add element after root
+void int_insert_after(Int_Node* node, int value) {
+    Int_Node* new_node = malloc(sizeof(Int_Node));
+    new_node->value = value;
+    new_node->next = node->next;
+    node->next = new_node;
+    // if(new_node == NULL) {
+    //     return 4;
+    // }
+}
+
+void int_deallocate(Int_Node** _root) {
+    Int_Node* curr = *_root;
+
+    while (curr != NULL) {
+        Int_Node* aux = curr;
         curr = curr->next;
         free(aux);
     }
@@ -57,11 +116,11 @@ void deallocate(Node** _root) {
 }
 
 // int main() {
-//     Node* root = NULL;
-//     insert_tail(&root, "s");
-//     insert_tail(&root, "sd");
-//     insert_tail(&root, "tit");
-//     insert_head(&root, "ddd");
+//     StringNode* root = NULL;
+//     str_insert_tail(&root, "s");
+//     str_insert_tail(&root, "sd");
+//     str_insert_tail(&root, "tit");
+//     str_insert_head(&root, "ddd");
 
 //     insert_after(root->next, "woo");
 
@@ -69,6 +128,6 @@ void deallocate(Node** _root) {
 //         printf("%s\n", curr->value);
 //     }
 
-//     deallocate(&root);
+//     str_deallocate(&root);
 //     return 0;
 // }

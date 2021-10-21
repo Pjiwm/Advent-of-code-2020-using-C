@@ -1,10 +1,18 @@
 #pragma once
 // have to look up how to get struct here?
- typedef struct Node {
-    char* value;
-    struct Node* next;
-} Node;
-void insert_tail(Node** _root, char* _value);
-void insert_head(Node** _root, char* _value);
-void insert_after(Node* node, char* value);
-void deallocate(Node** _root);
+ typedef struct String_Node {
+    char * value;
+    struct String_Node* next;
+} String_Node;
+void str_insert_tail(String_Node** _root, char* _value);
+void str_insert_head(String_Node** _root, char* _value);
+void str_insert_after(String_Node* node, char* value);
+void str_deallocate(String_Node** _root);
+ typedef struct Int_Node {
+    int value;
+    struct Int_Node* next;
+} Int_Node;
+void int_insert_tail(Int_Node** _root, int _value);
+void int_insert_head(Int_Node** _root, int _value);
+void int_insert_after(Int_Node* node, int value);
+void int_deallocate(Int_Node** _root);
