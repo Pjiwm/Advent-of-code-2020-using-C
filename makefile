@@ -1,5 +1,5 @@
-output: main.o file_reader.o linked_list.o solutions.o day1.o day2.o day3.o day4.o day5.o day6.o day7.o day8.o
-	gcc -g main.o file_reader.o linked_list.o day1.o day2.o day3.o day4.o day5.o day6.o day7.o day8.o -o output
+output: main.o file_reader.o linked_list.o hashtable.o solutions.o day1.o day2.o day3.o day4.o day5.o day6.o day7.o day8.o
+	gcc -g main.o file_reader.o linked_list.o hashtable.o day1.o day2.o day3.o day4.o day5.o day6.o day7.o day8.o -o output
 
 main.o: main.c
 	gcc -c main.c
@@ -36,6 +36,9 @@ file_reader.o: helpers/file_reader.c helpers/file_reader.h
 
 linked_list.o: helpers/linked_list.c helpers/linked_list.h
 	gcc -c helpers/linked_list.c
+
+hashtable.o: helpers/hashtable.c helpers/hashtable.h
+	gcc -c helpers/hashtable.c
 
 clean:
 	rm *.o output debug

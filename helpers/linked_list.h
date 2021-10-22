@@ -1,4 +1,5 @@
 #pragma once
+#define TABLE_SIZE 20000
 // have to look up how to get struct here?
  typedef struct String_Node {
     char * value;

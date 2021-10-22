@@ -3,7 +3,6 @@
 #include <ctype.h>
 #include "solutions/solutions.h"
 #include "helpers/file_reader.h"
-#include "helpers/linked_list.h"
 void run_all() {
     day1();
     day2();
