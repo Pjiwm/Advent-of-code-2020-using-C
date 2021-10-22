@@ -41,17 +41,43 @@ _Bool is_already_executed(int _index, Int_Node* root) {
 
 void day8() {
     const size_t LENGTH = 625;
-    char* lines[LENGTH];
-    file_to_array("inputs/day8.txt", lines);
+    char* insturctions[LENGTH];
+    file_to_array("inputs/day8.txt", insturctions);
     printf("day 8:\n");
+    // part 1
     int index = 0;
     _Bool has_no_repeats = 1;
     while (index < LENGTH && has_no_repeats) {
         int_insert_tail(&executed_indexes, index);
-        int index_adjustment = instruction_manager(lines[index]);
+        int index_adjustment = instruction_manager(insturctions[index]);
         index += index_adjustment;
         has_no_repeats = is_already_executed(index, executed_indexes);
     }
-    
+    printf("%d\n", accumulator);
+    int_deallocate(&executed_indexes);
+    accumulator = 0;
+
+    // part 2
+    for (size_t i = 0; i < LENGTH; i++) {
+        int index = 0;
+        _Bool has_no_repeats = 1;
+        while (index < LENGTH && has_no_repeats) {
+            int_insert_tail(&executed_indexes, index);
+            if (index == i) {
+                index++;
+            }
+            int index_adjustment = instruction_manager(insturctions[index]);
+            index += index_adjustment;
+            has_no_repeats = is_already_executed(index, executed_indexes);
+        }
+        if (has_no_repeats) {
+            i = LENGTH;
+        }
+        else {
+            has_no_repeats = 1;
+            int_deallocate(&executed_indexes);
+            accumulator = 0;
+        }
+    }
     printf("%d\n", accumulator);
 }
