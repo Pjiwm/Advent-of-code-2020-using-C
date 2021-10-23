@@ -41,15 +41,15 @@ _Bool is_already_executed(int _index, Int_Node* root) {
 
 void day8() {
     const size_t LENGTH = 625;
-    char* insturctions[LENGTH];
-    file_to_array("inputs/day8.txt", insturctions);
+    char* instructions[LENGTH];
+    file_to_array("inputs/day8.txt", instructions);
     printf("day 8:\n");
     // part 1
     int index = 0;
     _Bool has_no_repeats = 1;
     while (index < LENGTH && has_no_repeats) {
         int_insert_tail(&executed_indexes, index);
-        int index_adjustment = instruction_manager(insturctions[index]);
+        int index_adjustment = instruction_manager(instructions[index]);
         index += index_adjustment;
         has_no_repeats = is_already_executed(index, executed_indexes);
     }
@@ -66,7 +66,7 @@ void day8() {
             if (index == i) {
                 index++;
             }
-            int index_adjustment = instruction_manager(insturctions[index]);
+            int index_adjustment = instruction_manager(instructions[index]);
             index += index_adjustment;
             has_no_repeats = is_already_executed(index, executed_indexes);
         }
@@ -79,5 +79,7 @@ void day8() {
             accumulator = 0;
         }
     }
+    int_deallocate(&executed_indexes);
     printf("%d\n", accumulator);
+    free(instructions);
 }
