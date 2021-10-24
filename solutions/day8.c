@@ -81,5 +81,4 @@ void day8() {
     }
     int_deallocate(&executed_indexes);
     printf("%d\n", accumulator);
-    free(instructions);
 }

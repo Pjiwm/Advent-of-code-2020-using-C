@@ -115,6 +115,65 @@ void int_deallocate(Int_Node** _root) {
     *_root = NULL;
 }
 
+
+
+
+// Long long ints
+
+// add element to end of list
+void long_long_int_insert_tail(Long_Long_Int_Node** _root, long long int _value) {
+    Long_Long_Int_Node* new_node = malloc(sizeof(Long_Long_Int_Node));
+    if (new_node == NULL) {
+        exit(1);
+    }
+    new_node->next = NULL;
+    new_node->value = _value;
+
+    if (*_root == NULL) {
+        *_root = new_node;
+        return;
+    }
+
+    Long_Long_Int_Node* curr = *_root;
+    while (curr->next != NULL) {
+        curr = curr->next;
+    }
+    curr->next = new_node;
+}
+// add element to beginning of list
+void long_long_int_insert_head(Long_Long_Int_Node** _root, long long int _value) {
+    Long_Long_Int_Node* new_node = malloc(sizeof(Long_Long_Int_Node));
+    // if(new_node == NULL) {
+    //     return 3;
+    // }
+    new_node->value = _value;
+    new_node->next = *_root;
+
+    *_root = new_node;
+}
+// add element after root
+void long_long_int_insert_after(Long_Long_Int_Node* node, long long int value) {
+    Long_Long_Int_Node* new_node = malloc(sizeof(Long_Long_Int_Node));
+    new_node->value = value;
+    new_node->next = node->next;
+    node->next = new_node;
+    // if(new_node == NULL) {
+    //     return 4;
+    // }
+}
+
+void long_long_int_deallocate(Long_Long_Int_Node** _root) {
+    Long_Long_Int_Node* curr = *_root;
+
+    while (curr != NULL) {
+        Long_Long_Int_Node* aux = curr;
+        curr = curr->next;
+        free(aux);
+    }
+
+    *_root = NULL;
+}
+
 // int main() {
 //     StringNode* root = NULL;
 //     str_insert_tail(&root, "s");

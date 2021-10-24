@@ -15,3 +15,11 @@ void int_insert_tail(Int_Node** _root, int _value);
 void int_insert_head(Int_Node** _root, int _value);
 void int_insert_after(Int_Node* node, int value);
 void int_deallocate(Int_Node** _root);
+ typedef struct Long_Long_Int_Node {
+    long long int value;
+    struct Long_Long_Int_Node* next;
+} Long_Long_Int_Node;
+void long_long_int_insert_tail(Long_Long_Int_Node** _root, long long int _value);
+void long_long_int_insert_head(Long_Long_Int_Node** _root, long long int _value);
+void long_long_int_insert_after(Long_Long_Int_Node* node, long long int value);
+void long_long_int_deallocate(Long_Long_Int_Node** _root);
