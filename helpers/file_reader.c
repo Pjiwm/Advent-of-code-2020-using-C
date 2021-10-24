@@ -45,7 +45,7 @@ void file_to_long_long_int_array(char* file_name, long long int result[]) {
     }
 }
 
-void file_to_int_array(char* file_name, long long int result[]) {
+void file_to_int_array(char* file_name, int result[]) {
     FILE* fPointer = fopen(file_name, "r");
     char* line = NULL;
     size_t len = 0;

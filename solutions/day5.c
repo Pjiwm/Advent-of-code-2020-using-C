@@ -2,21 +2,22 @@
 #include <stdlib.h>
 #include <string.h>
 #include "../helpers/file_reader.h"
+#include "../helpers/array_helper.h"
 
-void bubble_sort(size_t* arr, size_t LENGTH) {
-    _Bool is_sorted = 0;
-    while (!is_sorted) {
-        is_sorted = 1;
-        for (size_t i = 0; i < LENGTH; i++) {
-            if (arr[i] > arr[i + 1]) {
-                size_t temp = arr[i + 1];
-                arr[i + 1] = arr[i];
-                arr[i] = temp;
-                is_sorted = 0;
-            }
-        }
-    }
-}
+// void bubble_sort(size_t* arr, size_t LENGTH) {
+//     _Bool is_sorted = 0;
+//     while (!is_sorted) {
+//         is_sorted = 1;
+//         for (size_t i = 0; i < LENGTH; i++) {
+//             if (arr[i] > arr[i + 1]) {
+//                 size_t temp = arr[i + 1];
+//                 arr[i + 1] = arr[i];
+//                 arr[i] = temp;
+//                 is_sorted = 0;
+//             }
+//         }
+//     }
+// }
 
 size_t calculate_id(size_t row, size_t column) {
     return row * 8 + column;
@@ -78,7 +79,7 @@ void day5() {
         }
         // printf("%ld\n", new_id);
     }
-    bubble_sort(IDs, LENGTH);
+    size_t_bubble_sort(IDs, LENGTH);
     printf("day5:\n");
     printf("%ld\n", highest);
     for (size_t i = 0; i < LENGTH; i++) {
