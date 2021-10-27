@@ -1,5 +1,5 @@
-output: main.o file_reader.o linked_list.o hashtable.o array_sort.o solutions.o day1.o day2.o day3.o day4.o day5.o day6.o day7.o day8.o day9.o day10.o day11.o
-	gcc -g main.o file_reader.o linked_list.o hashtable.o array_sort.o day1.o day2.o day3.o day4.o day5.o day6.o day7.o day8.o day9.o day10.o day11.o -o output
+output: main.o file_reader.o linked_list.o hashtable.o array_sort.o array_copy.o solutions.o day1.o day2.o day3.o day4.o day5.o day6.o day7.o day8.o day9.o day10.o day11.o
+	gcc -g main.o file_reader.o linked_list.o hashtable.o array_sort.o array_copy.o day1.o day2.o day3.o day4.o day5.o day6.o day7.o day8.o day9.o day10.o day11.o -o output
 
 main.o: main.c
 	gcc -c main.c
@@ -52,6 +52,9 @@ hashtable.o: helpers/hashtable.c helpers/hashtable.h
 
 array_sort.o: helpers/array_sort.c helpers/array_helper.h
 	gcc -c helpers/array_sort.c
+
+array_copy.o: helpers/array_copy.c helpers/array_helper.h
+	gcc -c helpers/array_copy.c
 
 clean:
 	rm *.o output debug
