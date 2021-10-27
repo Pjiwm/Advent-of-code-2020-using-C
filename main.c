@@ -14,6 +14,7 @@ void run_all() {
     day8();
     day9();
     day10();
+    day11();
 }
 
 
@@ -52,6 +53,9 @@ int main(int argc, char** argv) {
         break;
     case 10:
         day10();
+        break;
+    case 11:
+        day11();
         break;
     default:
         printf("No specific or invalid argument.\n displaying all days.\n");
